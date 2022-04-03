@@ -1,6 +1,15 @@
 // app.ts
+
+let resolveUserInfo: (value: WechatMiniprogram.UserInfo | PromiseLike<WechatMiniprogram.UserInfo>) => void
+let rejectUserInfo: (reason?: any) => void
+
 App<IAppOption>({
-  globalData: {},
+  globalData: {
+    userInfo: new Promise((resolve, reject) => {
+      resolveUserInfo = resolve
+      rejectUserInfo = reject
+    })
+  },
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
@@ -14,5 +23,8 @@ App<IAppOption>({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       },
     })
+  },
+  resolveUserInfo(userInfo: WechatMiniprogram.UserInfo) {
+    resolveUserInfo(userInfo)
   },
 })
