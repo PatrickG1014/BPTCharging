@@ -7,7 +7,7 @@ page {
     height: 100%;
     width: 100%;
     align-items: flex-start;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .userinfo {

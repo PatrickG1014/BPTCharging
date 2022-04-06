@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/startcharging/startcharging",
     "pages/charging/charging",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -12,8 +12,10 @@
 *.out
 
 .vscode
+*.code-workspace
 
 wx/miniprogram/**/*.js
 node_modules
 miniprogram_npm
 package-lock.json
+project.private.config.json
