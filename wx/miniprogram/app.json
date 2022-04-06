@@ -1,16 +1,23 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/startcharging/startcharging"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "BPT充电桩",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-image": "@vant/weapp/image/index"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序获取定位并进行展示"
+    }
   }
 }

@@ -1,0 +1,10 @@
+.btn-container {
+    width: 600rpx;
+    bottom: 7%;
+    position: absolute;
+}
+
+image {
+    height: 550rpx;
+    width: 550rpx;
+}

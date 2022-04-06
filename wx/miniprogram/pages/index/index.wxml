@@ -1,4 +1,31 @@
-<!--index.wxml-->
+<map
+  id="map"
+  latitude="{{location.latitude}}"
+  longitude="{{location.longitude}}"
+  scale="{{scale}}"
+  setting="{{setting}}"
+  enable-overlooking="{{isOverlooking}}"
+  markers="{{markers}}"
+>
+  <view class="icon-container">
+    <block wx:if="{{!hasUserInfo}}">
+      <image class="icon" src="/resources/account.png" bindtap="getUserProfile"></image>
+    </block>
+    <block wx:else>
+      <van-image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" round></van-image>
+    </block>
+    <image
+      class="icon" src="/resources/my_location.png"
+      bindtap="onMyLocationTap"
+    ></image>
+  </view>
+  <van-button round type="info" block bind:click="onScanClicked"
+    icon="/resources/qr_scanner.png" class="btn-container">
+    扫码充电
+  </van-button>
+</map>
+
+<!-- index.wxml
 <view class="container">
   <view class="userinfo">
     <block wx:if="{{canIUseOpenData}}">
@@ -8,8 +35,8 @@
       <open-data type="userNickName"></open-data>
     </block>
     <block wx:elif="{{!hasUserInfo}}">
-      <van-button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </van-button>
-      <van-button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </van-button>
+      <van-button round plain type="primary" size="normal" wx:if="{{canIUseGetUserProfile}}" bind:click="getUserProfile"> 获取头像昵称 </van-button>
+      <van-button round plain type="primary" size="normal" wx:else open-type="getUserInfo" bind:getuserinfo="getUserInfo"> 获取头像昵称 </van-button>
     </block>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -19,4 +46,4 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
-</view>
+</view> -->

@@ -1,0 +1,9 @@
+<view class="container">
+  <image src="/resources/charging_car.png" />
+  <text>请将车辆停放在停车位内</text>
+  <text>并确认连接充电插头</text>
+  <van-button
+    round type="info" block class="btn-container"
+    bind:click="onUnlockTap"
+  >立即充电</van-button>
+</view>

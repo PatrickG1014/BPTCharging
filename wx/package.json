@@ -1,5 +1,5 @@
 {
-  "name": "miniprogram-ts-less-quickstart",
+  "name": "bptcharging",
   "version": "1.0.0",
   "description": "",
   "scripts": {},
@@ -10,6 +10,6 @@
     "@vant/weapp": "^1.10.2"
   },
   "devDependencies": {
-    "miniprogram-api-typings": "^2.12.0"
+    "miniprogram-api-typings": "^3.4.6"
   }
 }
