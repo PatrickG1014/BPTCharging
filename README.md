@@ -8,4 +8,4 @@ A BPT university charging pile charging and scheduling miniprogram.
 cd wx
 npm install
 ```
-Then open Weixin DevTools and compile the project.
+Then open Weixin DevTools, build npm and compile the project.

@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="panel">
+    <view class="time">
+      <van-icon name="clock-o" color="orange" size="40px"></van-icon>
+      <text class="time-text">{{elapsed}}</text>
+    </view>
+    <text class="fee">费用：{{fee}}元</text>
+    <van-button
+      type="danger" round class="btn-container"
+      block bind:click="onStopClicked">
+      结束充电
+    </van-button>
+  </view>
+  <map
+    id="map"
+    latitude="{{location.latitude}}"
+    longitude="{{location.longitude}}"
+    scale="{{scale}}"
+    setting="{{setting}}"
+    enable-overlooking="{{isOverlooking}}"
+    markers="{{markers}}"
+  >
+  </map>
+</view>

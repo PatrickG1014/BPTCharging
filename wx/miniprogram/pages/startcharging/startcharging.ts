@@ -8,7 +8,7 @@ Page({
     })
     setTimeout(() => {
       wx.redirectTo({
-        url: '/pages/',
+        url: '/pages/charging/charging',
         complete: () => {
           wx.hideLoading()
         }

@@ -9,10 +9,10 @@
 >
   <view class="icon-container">
     <block wx:if="{{!hasUserInfo}}">
-      <image class="icon" src="/resources/account.png" bindtap="getUserProfile"></image>
+      <image class="icon" src="/resources/account.png" bindtap="onUserClicked"></image>
     </block>
     <block wx:else>
-      <van-image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" round></van-image>
+      <van-image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" bindtap="onUserClicked" round></van-image>
     </block>
     <image
       class="icon" src="/resources/my_location.png"
@@ -20,7 +20,7 @@
     ></image>
   </view>
   <van-button round type="info" block bind:click="onScanClicked"
-    icon="/resources/qr_scanner.png" class="btn-container">
+    icon="scan" class="btn-container">
     扫码充电
   </van-button>
 </map>

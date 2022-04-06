@@ -1,5 +1,3 @@
-const app = getApp<IAppOption>()
-
 Page({
   isPageShowing: false,
   data: {
@@ -47,7 +45,7 @@ Page({
   },
 
   onLoad() {
-    app.globalData.userInfo.then(userInfo => {
+    getApp<IAppOption>().globalData.userInfo.then(userInfo => {
       this.setData({
         userInfo,
         hasUserInfo: true,
@@ -67,9 +65,15 @@ Page({
     wx.getUserProfile({
       desc: '用于完善头像和昵称的用户资料',
     }).then(res => {
-      app.resolveUserInfo(res.userInfo)
+      getApp<IAppOption>().resolveUserInfo(res.userInfo)
     }).catch(err => {
       console.log(err)
+    })
+  },
+
+  onUserClicked() {
+    wx.navigateTo({
+      url: '/pages/user/user',
     })
   },
 

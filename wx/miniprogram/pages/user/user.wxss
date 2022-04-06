@@ -1,0 +1,33 @@
+page {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.userinfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-left: 40rpx;
+}
+
+.userinfo image {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.userinfo text {
+    margin-left: 25rpx;
+}
+
+.grid {
+    width: 100%;
+}

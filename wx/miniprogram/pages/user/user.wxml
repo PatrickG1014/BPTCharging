@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo}}">
+      <image src="/resources/account.png" bindtap="onLoginClicked" />
+      <text bindtap="onLoginClicked">未登录</text>
+    </block>
+    <block wx:else>
+      <van-image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" round></van-image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <van-grid class="grid" icon-size='40px' column-num='3' clickable border>
+    <van-grid-item icon="bill-o" text="我的账单" />
+    <van-grid-item icon="logistics" text="我的爱车" />
+    <van-grid-item icon="paid" text="我的钱包" />
+  </van-grid>
+</view>

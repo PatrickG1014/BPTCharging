@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/startcharging/startcharging"
+    "pages/startcharging/startcharging",
+    "pages/charging/charging",
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -13,7 +15,9 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-icon": "@vant/weapp/icon/index",
-    "van-image": "@vant/weapp/image/index"
+    "van-image": "@vant/weapp/image/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index"
   },
   "permission": {
     "scope.userLocation": {
