@@ -1,20 +1,26 @@
+import camelcaseKeys from "camelcase-keys"
 import { IAppOption } from "./appoption"
+import { bptcharging } from "./service/proto_gen/trip_pb"
 
 let resolveUserInfo: (value: WechatMiniprogram.UserInfo | PromiseLike<WechatMiniprogram.UserInfo>) => void
-let rejectUserInfo: (reason?: any) => void
 
 App<IAppOption>({
   globalData: {
-    userInfo: new Promise((resolve, reject) => {
+    userInfo: new Promise((resolve) => {
       resolveUserInfo = resolve
-      rejectUserInfo = reject
     })
   },
   onLaunch() {
     wx.request({
       url: 'http://localhost:8080/trip/trip123',
       method: 'GET',
-      success: console.log,
+      success: res => {
+        const getTripRes = bptcharging.GetTripResponse.fromObject(camelcaseKeys(res.data as object, {
+          deep: true,
+        }))
+        console.log(getTripRes)
+        console.log('status is', bptcharging.TripStatus[getTripRes.trip?.status!])
+      },
       fail: console.error,
     })
 

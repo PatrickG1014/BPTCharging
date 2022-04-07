@@ -7,7 +7,9 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "@vant/weapp": "^1.10.2"
+    "@vant/weapp": "^1.10.2",
+    "camelcase-keys": "^7.0.2",
+    "protobufjs": "^6.11.2"
   },
   "devDependencies": {
     "miniprogram-api-typings": "^3.4.6"
