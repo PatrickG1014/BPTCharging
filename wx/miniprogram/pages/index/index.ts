@@ -1,3 +1,5 @@
+import { IAppOption } from "../../appoption"
+
 Page({
   isPageShowing: false,
   data: {

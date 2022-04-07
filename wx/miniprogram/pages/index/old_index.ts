@@ -2,6 +2,8 @@
 // 获取应用实例
 // const app = getApp<IAppOption>()
 
+import { IAppOption } from "../../appoption"
+
 Page({
   data: {
     userInfo: {},
@@ -19,7 +21,7 @@ Page({
     }
 
     if (!this.data.canIUseOpenData) {
-      app.globalData.userInfo.then(userInfo => {
+      getApp<IAppOption>().globalData.userInfo.then(userInfo => {
         this.setData({
           userInfo,
           hasUserInfo: true,
@@ -31,7 +33,7 @@ Page({
     wx.getUserProfile({
       desc: '用于完善头像和昵称的用户资料',
     }).then(res => {
-      app.resolveUserInfo(res.userInfo)
+      getApp<IAppOption>().resolveUserInfo(res.userInfo)
     }).catch(err => {
       console.log(err)
     })

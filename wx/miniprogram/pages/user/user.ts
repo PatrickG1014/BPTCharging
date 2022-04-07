@@ -1,3 +1,5 @@
+import { IAppOption } from "../../appoption"
+
 Page({
   data: {
     hasUserInfo: false,
