@@ -1,2 +1,7 @@
-<!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+<view class="container">
+    <image src="/resources/icon.png" />
+    <van-button
+      type="primary"icon="wechat" block
+      bind:click="onLoginClicked">
+      微信用户一键登录</van-button>
+</view>

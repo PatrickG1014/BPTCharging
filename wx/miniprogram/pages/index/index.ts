@@ -63,16 +63,6 @@ Page({
     this.isPageShowing = false
   },
 
-  getUserProfile() {
-    wx.getUserProfile({
-      desc: '用于完善头像和昵称的用户资料',
-    }).then(res => {
-      getApp<IAppOption>().resolveUserInfo(res.userInfo)
-    }).catch(err => {
-      console.log(err)
-    })
-  },
-
   onUserClicked() {
     wx.navigateTo({
       url: '/pages/user/user',

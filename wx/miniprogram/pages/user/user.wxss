@@ -17,6 +17,7 @@ page {
     justify-content: space-between;
     box-sizing: border-box;
     margin-left: 40rpx;
+    margin-top: 5%;
 }
 
 .userinfo image {
@@ -30,4 +31,5 @@ page {
 
 .grid {
     width: 100%;
+    margin-top: 10%;
 }
