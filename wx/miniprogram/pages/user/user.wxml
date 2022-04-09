@@ -1,7 +1,7 @@
 <view class="container">
   <view class="userinfo">
     <block wx:if="{{!hasUserInfo}}">
-      <image src="/resources/account.png" bindtap="onLoginClicked" />
+      <van-icon class="icon" name="user-circle-o" size="100rpx" bind:click="onLoginClicked" />
       <text bindtap="onLoginClicked">未登录</text>
     </block>
     <block wx:else>
