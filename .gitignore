@@ -24,3 +24,5 @@ package-lock.json
 project.private.config.json
 
 server/tmp
+private.key
+appsecret.txt
