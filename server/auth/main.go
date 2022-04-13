@@ -6,11 +6,11 @@ import (
 	"bptcharging/auth/dao"
 	"bptcharging/auth/token"
 	"bptcharging/auth/wechat"
+	"bptcharging/shared/server"
 	"context"
 	"flag"
 	"io"
 	"log"
-	"net"
 	"os"
 	"time"
 
@@ -28,11 +28,6 @@ func main() {
 	logger, err := zap.NewDevelopment()
 	if err != nil {
 		log.Fatalf("cannot create logger: %v", err)
-	}
-
-	lis, err := net.Listen("tcp", ":8081")
-	if err != nil {
-		logger.Fatal("cannot listen", zap.Error(err))
 	}
 
 	c := context.Background()
@@ -54,18 +49,23 @@ func main() {
 		logger.Fatal("cannot parse private key", zap.Error(err))
 	}
 
-	s := grpc.NewServer()
-	authpb.RegisterAuthServiceServer(s, &auth.Service{
-		OpenIDResolver: &wechat.Service{
-			AppID:     "wxbdf1e0c7c77107d0",
-			AppSecret: *appSecret,
+	err = server.RunGRPCServer(&server.GRPCConfig{
+		Name: "auth",
+		Addr: ":8081",
+		RegisterFunc: func(s *grpc.Server) {
+			authpb.RegisterAuthServiceServer(s, &auth.Service{
+				OpenIDResolver: &wechat.Service{
+					AppID:     "wxbdf1e0c7c77107d0",
+					AppSecret: *appSecret,
+				},
+				Mongo:          dao.NewMongo(mongoClient.Database("bptcharging")),
+				TokenGenerator: token.NewJWTTokenGen("bptcharging/auth", privKey),
+				TokenExpire:    2 * time.Hour,
+				Logger:         logger,
+			})
 		},
-		Mongo:          dao.NewMongo(mongoClient.Database("bptcharging")),
-		TokenGenerator: token.NewJWTTokenGen("bptcharging/auth", privKey),
-		TokenExpire:    2 * time.Hour,
-		Logger:         logger,
+		Logger: logger,
 	})
 
-	err = s.Serve(lis)
-	logger.Fatal("cannot serve", zap.Error(err))
+	logger.Fatal("cannot start server", zap.Error(err))
 }
