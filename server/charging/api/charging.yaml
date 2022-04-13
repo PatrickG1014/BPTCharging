@@ -1,0 +1,8 @@
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+    - selector: charging.v1.ChargingService.StartCharging
+      post: /v1/charging
+      body: "*"

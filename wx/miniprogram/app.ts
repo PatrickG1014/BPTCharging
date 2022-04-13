@@ -1,6 +1,7 @@
 import camelcaseKeys from "camelcase-keys"
 import { IAppOption } from "./appoption"
 import { auth } from "./service/proto_gen/auth/auth_pb"
+import { charging } from "./service/proto_gen/charging/charging_pb"
 
 let resolveUserInfo: (value: WechatMiniprogram.UserInfo | PromiseLike<WechatMiniprogram.UserInfo>) => void
 
@@ -45,6 +46,16 @@ App<IAppOption>({
               camelcaseKeys(res.data as object)
             )
             console.log(loginResp)
+            wx.request({
+              url: 'http://localhost:8080/v1/charging',
+              method: 'POST',
+              data: {
+                start: 'abc',
+              } as charging.v1.IStartChargingRequest,
+              header: {
+                authorization: 'Bearer ' + loginResp.accessToken,
+              },
+            })
           },
           fail: console.error,
         })

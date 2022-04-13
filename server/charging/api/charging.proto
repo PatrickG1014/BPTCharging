@@ -1,0 +1,15 @@
+syntax = "proto3";
+package charging.v1;
+option go_package="bptcharging/charging/api/gen/v1;chargingpb";
+
+message StartChargingRequest {
+    string start = 1;
+}
+
+message StartChargingResponse {
+    
+}
+
+service ChargingService {
+    rpc StartCharging (StartChargingRequest) returns (StartChargingResponse);
+}
