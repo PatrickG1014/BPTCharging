@@ -20,6 +20,6 @@ func (s *Service) StartCharging(c context.Context, req *chargingpb.StartCharging
 	if err != nil {
 		return nil, err
 	}
-	s.Logger.Info("start charging", zap.String("start", req.Start), zap.String("account_id", aid))
+	s.Logger.Info("start charging", zap.String("start", req.Start), zap.String("account_id", aid.String()))
 	return nil, status.Error(codes.Unimplemented, "")
 }
