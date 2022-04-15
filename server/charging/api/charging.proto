@@ -2,14 +2,49 @@ syntax = "proto3";
 package charging.v1;
 option go_package="bptcharging/charging/api/gen/v1;chargingpb";
 
-message StartChargingRequest {
-    string start = 1;
+enum OrderStatus {
+    OS_NOT_SPECIFIED = 0;
+    IN_PROGRESS = 1;
+    FINISHED = 2;
 }
 
-message StartChargingResponse {
-    
+message OrderEntity {
+    string id = 1;
+    Order order = 2;
 }
 
-service ChargingService {
-    rpc StartCharging (StartChargingRequest) returns (StartChargingResponse);
+message Order {
+    string account_id = 1;
+    string pile_id = 2;
+    int32 fee_cent_current = 3;
+    int32 fee_cent_end = 4;
+    OrderStatus status = 5;
+}
+
+message CreateOrderRequest {
+    string pile_id = 1;
+}
+
+message GetOrderRequest {
+    string id = 1;
+}
+
+message GetOrdersRequest {
+    OrderStatus status = 1;
+}
+
+message GetOrdersResponse {
+    repeated OrderEntity orders = 1;
+}
+
+message UpdateOrderRequest {
+    string id = 1;
+    bool end_order = 2;
+}
+
+service OrderService {
+    rpc CreateOrder (CreateOrderRequest) returns (OrderEntity);
+    rpc GetOrder (GetOrderRequest) returns (Order);
+    rpc GetOrders (GetOrdersRequest) returns (GetOrdersResponse);
+    rpc UpdateOrder (UpdateOrderRequest) returns (Order);
 }

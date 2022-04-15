@@ -17,7 +17,7 @@ import (
 func main() {
 	lg, err := zap.NewDevelopment()
 	if err != nil {
-		log.Fatal("cannot create zap logger: %v", err)
+		log.Fatalf("cannot create zap logger: %v", err)
 	}
 
 	c := context.Background()
@@ -44,9 +44,9 @@ func main() {
 			registerFunc: authpb.RegisterAuthServiceHandlerFromEndpoint,
 		},
 		{
-			name:         "charging",
+			name:         "order",
 			addr:         "localhost:8082",
-			registerFunc: chargingpb.RegisterChargingServiceHandlerFromEndpoint,
+			registerFunc: chargingpb.RegisterOrderServiceHandlerFromEndpoint,
 		},
 	}
 

@@ -31,8 +31,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_ChargingService_StartCharging_0(ctx context.Context, marshaler runtime.Marshaler, client ChargingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StartChargingRequest
+func request_OrderService_CreateOrder_0(ctx context.Context, marshaler runtime.Marshaler, client OrderServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateOrderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -43,13 +43,13 @@ func request_ChargingService_StartCharging_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.StartCharging(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateOrder(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ChargingService_StartCharging_0(ctx context.Context, marshaler runtime.Marshaler, server ChargingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StartChargingRequest
+func local_request_OrderService_CreateOrder_0(ctx context.Context, marshaler runtime.Marshaler, server OrderServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateOrderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -60,30 +60,30 @@ func local_request_ChargingService_StartCharging_0(ctx context.Context, marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.StartCharging(ctx, &protoReq)
+	msg, err := server.CreateOrder(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-// RegisterChargingServiceHandlerServer registers the http handlers for service ChargingService to "mux".
-// UnaryRPC     :call ChargingServiceServer directly.
+// RegisterOrderServiceHandlerServer registers the http handlers for service OrderService to "mux".
+// UnaryRPC     :call OrderServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterChargingServiceHandlerFromEndpoint instead.
-func RegisterChargingServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ChargingServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterOrderServiceHandlerFromEndpoint instead.
+func RegisterOrderServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server OrderServiceServer) error {
 
-	mux.Handle("POST", pattern_ChargingService_StartCharging_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_OrderService_CreateOrder_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/charging.v1.ChargingService/StartCharging", runtime.WithHTTPPathPattern("/v1/charging"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/charging.v1.OrderService/CreateOrder", runtime.WithHTTPPathPattern("/v1/order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ChargingService_StartCharging_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_OrderService_CreateOrder_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -91,16 +91,16 @@ func RegisterChargingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_ChargingService_StartCharging_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_OrderService_CreateOrder_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterChargingServiceHandlerFromEndpoint is same as RegisterChargingServiceHandler but
+// RegisterOrderServiceHandlerFromEndpoint is same as RegisterOrderServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterChargingServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterOrderServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -120,40 +120,40 @@ func RegisterChargingServiceHandlerFromEndpoint(ctx context.Context, mux *runtim
 		}()
 	}()
 
-	return RegisterChargingServiceHandler(ctx, mux, conn)
+	return RegisterOrderServiceHandler(ctx, mux, conn)
 }
 
-// RegisterChargingServiceHandler registers the http handlers for service ChargingService to "mux".
+// RegisterOrderServiceHandler registers the http handlers for service OrderService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterChargingServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterChargingServiceHandlerClient(ctx, mux, NewChargingServiceClient(conn))
+func RegisterOrderServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterOrderServiceHandlerClient(ctx, mux, NewOrderServiceClient(conn))
 }
 
-// RegisterChargingServiceHandlerClient registers the http handlers for service ChargingService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ChargingServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ChargingServiceClient"
+// RegisterOrderServiceHandlerClient registers the http handlers for service OrderService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "OrderServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "OrderServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "ChargingServiceClient" to call the correct interceptors.
-func RegisterChargingServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ChargingServiceClient) error {
+// "OrderServiceClient" to call the correct interceptors.
+func RegisterOrderServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client OrderServiceClient) error {
 
-	mux.Handle("POST", pattern_ChargingService_StartCharging_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_OrderService_CreateOrder_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/charging.v1.ChargingService/StartCharging", runtime.WithHTTPPathPattern("/v1/charging"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/charging.v1.OrderService/CreateOrder", runtime.WithHTTPPathPattern("/v1/order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ChargingService_StartCharging_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_OrderService_CreateOrder_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ChargingService_StartCharging_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_OrderService_CreateOrder_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -161,9 +161,9 @@ func RegisterChargingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_ChargingService_StartCharging_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "charging"}, ""))
+	pattern_OrderService_CreateOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "order"}, ""))
 )
 
 var (
-	forward_ChargingService_StartCharging_0 = runtime.ForwardResponseMessage
+	forward_OrderService_CreateOrder_0 = runtime.ForwardResponseMessage
 )

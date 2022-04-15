@@ -2,7 +2,7 @@ package main
 
 import (
 	chargingpb "bptcharging/charging/api/gen/v1"
-	"bptcharging/charging/charging"
+	"bptcharging/charging/order"
 	"bptcharging/shared/server"
 	"log"
 
@@ -17,11 +17,11 @@ func main() {
 	}
 
 	err = server.RunGRPCServer(&server.GRPCConfig{
-		Name:              "charging",
+		Name:              "order",
 		Addr:              ":8082",
 		AuthPublicKeyFile: "shared/auth/public.key",
 		RegisterFunc: func(s *grpc.Server) {
-			chargingpb.RegisterChargingServiceServer(s, &charging.Service{
+			chargingpb.RegisterOrderServiceServer(s, &order.Service{
 				Logger: logger,
 			})
 		},

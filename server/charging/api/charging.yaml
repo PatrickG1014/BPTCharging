@@ -3,6 +3,6 @@ config_version: 3
 
 http:
   rules:
-    - selector: charging.v1.ChargingService.StartCharging
-      post: /v1/charging
+    - selector: charging.v1.OrderService.CreateOrder
+      post: /v1/order
       body: "*"

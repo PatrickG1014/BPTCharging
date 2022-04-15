@@ -5,87 +5,341 @@ export namespace charging {
     /** Namespace v1. */
     namespace v1 {
 
-        /** Properties of a StartChargingRequest. */
-        interface IStartChargingRequest {
-
-            /** StartChargingRequest start */
-            start?: (string|null);
+        /** OrderStatus enum. */
+        enum OrderStatus {
+            OS_NOT_SPECIFIED = 0,
+            IN_PROGRESS = 1,
+            FINISHED = 2
         }
 
-        /** Represents a StartChargingRequest. */
-        class StartChargingRequest implements IStartChargingRequest {
+        /** Properties of an OrderEntity. */
+        interface IOrderEntity {
+
+            /** OrderEntity id */
+            id?: (string|null);
+
+            /** OrderEntity order */
+            order?: (charging.v1.IOrder|null);
+        }
+
+        /** Represents an OrderEntity. */
+        class OrderEntity implements IOrderEntity {
 
             /**
-             * Constructs a new StartChargingRequest.
+             * Constructs a new OrderEntity.
              * @param [properties] Properties to set
              */
-            constructor(properties?: charging.v1.IStartChargingRequest);
+            constructor(properties?: charging.v1.IOrderEntity);
 
-            /** StartChargingRequest start. */
-            public start: string;
+            /** OrderEntity id. */
+            public id: string;
+
+            /** OrderEntity order. */
+            public order?: (charging.v1.IOrder|null);
 
             /**
-             * Creates a StartChargingRequest message from a plain object. Also converts values to their respective internal types.
+             * Creates an OrderEntity message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
-             * @returns StartChargingRequest
+             * @returns OrderEntity
              */
-            public static fromObject(object: { [k: string]: any }): charging.v1.StartChargingRequest;
+            public static fromObject(object: { [k: string]: any }): charging.v1.OrderEntity;
 
             /**
-             * Creates a plain object from a StartChargingRequest message. Also converts values to other types if specified.
-             * @param message StartChargingRequest
+             * Creates a plain object from an OrderEntity message. Also converts values to other types if specified.
+             * @param message OrderEntity
              * @param [options] Conversion options
              * @returns Plain object
              */
-            public static toObject(message: charging.v1.StartChargingRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+            public static toObject(message: charging.v1.OrderEntity, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
             /**
-             * Converts this StartChargingRequest to JSON.
+             * Converts this OrderEntity to JSON.
              * @returns JSON object
              */
             public toJSON(): { [k: string]: any };
         }
 
-        /** Properties of a StartChargingResponse. */
-        interface IStartChargingResponse {
+        /** Properties of an Order. */
+        interface IOrder {
+
+            /** Order accountId */
+            accountId?: (string|null);
+
+            /** Order pileId */
+            pileId?: (string|null);
+
+            /** Order feeCentCurrent */
+            feeCentCurrent?: (number|null);
+
+            /** Order feeCentEnd */
+            feeCentEnd?: (number|null);
+
+            /** Order status */
+            status?: (charging.v1.OrderStatus|null);
         }
 
-        /** Represents a StartChargingResponse. */
-        class StartChargingResponse implements IStartChargingResponse {
+        /** Represents an Order. */
+        class Order implements IOrder {
 
             /**
-             * Constructs a new StartChargingResponse.
+             * Constructs a new Order.
              * @param [properties] Properties to set
              */
-            constructor(properties?: charging.v1.IStartChargingResponse);
+            constructor(properties?: charging.v1.IOrder);
+
+            /** Order accountId. */
+            public accountId: string;
+
+            /** Order pileId. */
+            public pileId: string;
+
+            /** Order feeCentCurrent. */
+            public feeCentCurrent: number;
+
+            /** Order feeCentEnd. */
+            public feeCentEnd: number;
+
+            /** Order status. */
+            public status: charging.v1.OrderStatus;
 
             /**
-             * Creates a StartChargingResponse message from a plain object. Also converts values to their respective internal types.
+             * Creates an Order message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
-             * @returns StartChargingResponse
+             * @returns Order
              */
-            public static fromObject(object: { [k: string]: any }): charging.v1.StartChargingResponse;
+            public static fromObject(object: { [k: string]: any }): charging.v1.Order;
 
             /**
-             * Creates a plain object from a StartChargingResponse message. Also converts values to other types if specified.
-             * @param message StartChargingResponse
+             * Creates a plain object from an Order message. Also converts values to other types if specified.
+             * @param message Order
              * @param [options] Conversion options
              * @returns Plain object
              */
-            public static toObject(message: charging.v1.StartChargingResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+            public static toObject(message: charging.v1.Order, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
             /**
-             * Converts this StartChargingResponse to JSON.
+             * Converts this Order to JSON.
              * @returns JSON object
              */
             public toJSON(): { [k: string]: any };
         }
 
-        /** Represents a ChargingService */
-        class ChargingService extends $protobuf.rpc.Service {
+        /** Properties of a CreateOrderRequest. */
+        interface ICreateOrderRequest {
+
+            /** CreateOrderRequest pileId */
+            pileId?: (string|null);
+        }
+
+        /** Represents a CreateOrderRequest. */
+        class CreateOrderRequest implements ICreateOrderRequest {
 
             /**
-             * Constructs a new ChargingService service.
+             * Constructs a new CreateOrderRequest.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: charging.v1.ICreateOrderRequest);
+
+            /** CreateOrderRequest pileId. */
+            public pileId: string;
+
+            /**
+             * Creates a CreateOrderRequest message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CreateOrderRequest
+             */
+            public static fromObject(object: { [k: string]: any }): charging.v1.CreateOrderRequest;
+
+            /**
+             * Creates a plain object from a CreateOrderRequest message. Also converts values to other types if specified.
+             * @param message CreateOrderRequest
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: charging.v1.CreateOrderRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CreateOrderRequest to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        /** Properties of a GetOrderRequest. */
+        interface IGetOrderRequest {
+
+            /** GetOrderRequest id */
+            id?: (string|null);
+        }
+
+        /** Represents a GetOrderRequest. */
+        class GetOrderRequest implements IGetOrderRequest {
+
+            /**
+             * Constructs a new GetOrderRequest.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: charging.v1.IGetOrderRequest);
+
+            /** GetOrderRequest id. */
+            public id: string;
+
+            /**
+             * Creates a GetOrderRequest message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns GetOrderRequest
+             */
+            public static fromObject(object: { [k: string]: any }): charging.v1.GetOrderRequest;
+
+            /**
+             * Creates a plain object from a GetOrderRequest message. Also converts values to other types if specified.
+             * @param message GetOrderRequest
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: charging.v1.GetOrderRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this GetOrderRequest to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        /** Properties of a GetOrdersRequest. */
+        interface IGetOrdersRequest {
+
+            /** GetOrdersRequest status */
+            status?: (charging.v1.OrderStatus|null);
+        }
+
+        /** Represents a GetOrdersRequest. */
+        class GetOrdersRequest implements IGetOrdersRequest {
+
+            /**
+             * Constructs a new GetOrdersRequest.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: charging.v1.IGetOrdersRequest);
+
+            /** GetOrdersRequest status. */
+            public status: charging.v1.OrderStatus;
+
+            /**
+             * Creates a GetOrdersRequest message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns GetOrdersRequest
+             */
+            public static fromObject(object: { [k: string]: any }): charging.v1.GetOrdersRequest;
+
+            /**
+             * Creates a plain object from a GetOrdersRequest message. Also converts values to other types if specified.
+             * @param message GetOrdersRequest
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: charging.v1.GetOrdersRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this GetOrdersRequest to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        /** Properties of a GetOrdersResponse. */
+        interface IGetOrdersResponse {
+
+            /** GetOrdersResponse orders */
+            orders?: (charging.v1.IOrderEntity[]|null);
+        }
+
+        /** Represents a GetOrdersResponse. */
+        class GetOrdersResponse implements IGetOrdersResponse {
+
+            /**
+             * Constructs a new GetOrdersResponse.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: charging.v1.IGetOrdersResponse);
+
+            /** GetOrdersResponse orders. */
+            public orders: charging.v1.IOrderEntity[];
+
+            /**
+             * Creates a GetOrdersResponse message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns GetOrdersResponse
+             */
+            public static fromObject(object: { [k: string]: any }): charging.v1.GetOrdersResponse;
+
+            /**
+             * Creates a plain object from a GetOrdersResponse message. Also converts values to other types if specified.
+             * @param message GetOrdersResponse
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: charging.v1.GetOrdersResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this GetOrdersResponse to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        /** Properties of an UpdateOrderRequest. */
+        interface IUpdateOrderRequest {
+
+            /** UpdateOrderRequest id */
+            id?: (string|null);
+
+            /** UpdateOrderRequest endOrder */
+            endOrder?: (boolean|null);
+        }
+
+        /** Represents an UpdateOrderRequest. */
+        class UpdateOrderRequest implements IUpdateOrderRequest {
+
+            /**
+             * Constructs a new UpdateOrderRequest.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: charging.v1.IUpdateOrderRequest);
+
+            /** UpdateOrderRequest id. */
+            public id: string;
+
+            /** UpdateOrderRequest endOrder. */
+            public endOrder: boolean;
+
+            /**
+             * Creates an UpdateOrderRequest message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns UpdateOrderRequest
+             */
+            public static fromObject(object: { [k: string]: any }): charging.v1.UpdateOrderRequest;
+
+            /**
+             * Creates a plain object from an UpdateOrderRequest message. Also converts values to other types if specified.
+             * @param message UpdateOrderRequest
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: charging.v1.UpdateOrderRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this UpdateOrderRequest to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        /** Represents an OrderService */
+        class OrderService extends $protobuf.rpc.Service {
+
+            /**
+             * Constructs a new OrderService service.
              * @param rpcImpl RPC implementation
              * @param [requestDelimited=false] Whether requests are length-delimited
              * @param [responseDelimited=false] Whether responses are length-delimited
@@ -93,28 +347,91 @@ export namespace charging {
             constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
 
             /**
-             * Calls StartCharging.
-             * @param request StartChargingRequest message or plain object
-             * @param callback Node-style callback called with the error, if any, and StartChargingResponse
+             * Calls CreateOrder.
+             * @param request CreateOrderRequest message or plain object
+             * @param callback Node-style callback called with the error, if any, and OrderEntity
              */
-            public startCharging(request: charging.v1.IStartChargingRequest, callback: charging.v1.ChargingService.StartChargingCallback): void;
+            public createOrder(request: charging.v1.ICreateOrderRequest, callback: charging.v1.OrderService.CreateOrderCallback): void;
 
             /**
-             * Calls StartCharging.
-             * @param request StartChargingRequest message or plain object
+             * Calls CreateOrder.
+             * @param request CreateOrderRequest message or plain object
              * @returns Promise
              */
-            public startCharging(request: charging.v1.IStartChargingRequest): Promise<charging.v1.StartChargingResponse>;
-        }
-
-        namespace ChargingService {
+            public createOrder(request: charging.v1.ICreateOrderRequest): Promise<charging.v1.OrderEntity>;
 
             /**
-             * Callback as used by {@link charging.v1.ChargingService#startCharging}.
-             * @param error Error, if any
-             * @param [response] StartChargingResponse
+             * Calls GetOrder.
+             * @param request GetOrderRequest message or plain object
+             * @param callback Node-style callback called with the error, if any, and Order
              */
-            type StartChargingCallback = (error: (Error|null), response?: charging.v1.StartChargingResponse) => void;
+            public getOrder(request: charging.v1.IGetOrderRequest, callback: charging.v1.OrderService.GetOrderCallback): void;
+
+            /**
+             * Calls GetOrder.
+             * @param request GetOrderRequest message or plain object
+             * @returns Promise
+             */
+            public getOrder(request: charging.v1.IGetOrderRequest): Promise<charging.v1.Order>;
+
+            /**
+             * Calls GetOrders.
+             * @param request GetOrdersRequest message or plain object
+             * @param callback Node-style callback called with the error, if any, and GetOrdersResponse
+             */
+            public getOrders(request: charging.v1.IGetOrdersRequest, callback: charging.v1.OrderService.GetOrdersCallback): void;
+
+            /**
+             * Calls GetOrders.
+             * @param request GetOrdersRequest message or plain object
+             * @returns Promise
+             */
+            public getOrders(request: charging.v1.IGetOrdersRequest): Promise<charging.v1.GetOrdersResponse>;
+
+            /**
+             * Calls UpdateOrder.
+             * @param request UpdateOrderRequest message or plain object
+             * @param callback Node-style callback called with the error, if any, and Order
+             */
+            public updateOrder(request: charging.v1.IUpdateOrderRequest, callback: charging.v1.OrderService.UpdateOrderCallback): void;
+
+            /**
+             * Calls UpdateOrder.
+             * @param request UpdateOrderRequest message or plain object
+             * @returns Promise
+             */
+            public updateOrder(request: charging.v1.IUpdateOrderRequest): Promise<charging.v1.Order>;
+        }
+
+        namespace OrderService {
+
+            /**
+             * Callback as used by {@link charging.v1.OrderService#createOrder}.
+             * @param error Error, if any
+             * @param [response] OrderEntity
+             */
+            type CreateOrderCallback = (error: (Error|null), response?: charging.v1.OrderEntity) => void;
+
+            /**
+             * Callback as used by {@link charging.v1.OrderService#getOrder}.
+             * @param error Error, if any
+             * @param [response] Order
+             */
+            type GetOrderCallback = (error: (Error|null), response?: charging.v1.Order) => void;
+
+            /**
+             * Callback as used by {@link charging.v1.OrderService#getOrders}.
+             * @param error Error, if any
+             * @param [response] GetOrdersResponse
+             */
+            type GetOrdersCallback = (error: (Error|null), response?: charging.v1.GetOrdersResponse) => void;
+
+            /**
+             * Callback as used by {@link charging.v1.OrderService#updateOrder}.
+             * @param error Error, if any
+             * @param [response] Order
+             */
+            type UpdateOrderCallback = (error: (Error|null), response?: charging.v1.Order) => void;
         }
     }
 }
